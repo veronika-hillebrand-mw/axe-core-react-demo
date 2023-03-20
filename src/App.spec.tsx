@@ -1,3 +1,4 @@
+import {axe} from 'vitest-axe'
 import App from './App'
 import { render, screen, userEvent } from './tests/utils'
 
@@ -18,5 +19,11 @@ describe('Simple working test', () => {
     const element = screen.getByText('Click on the Vite and React logos to learn more')
     expect(element.className).toEqual('read-the-docs')
     expect(getComputedStyle(element).color).toEqual('rgb(136, 136, 136)')
+  })
+
+  it('should be accessible to all users', async () => {
+    render(<App/>, document.body)
+    const results = await axe(document.body)
+    expect(results).toHaveNoViolations()
   })
 })
