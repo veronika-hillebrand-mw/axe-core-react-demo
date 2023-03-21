@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:e2e": "cypress run"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -22,6 +23,7 @@
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react-swc": "^3.0.0",
     "canvas": "^2.11.0",
+    "cypress": "^12.8.1",
     "jsdom": "^21.1.1",
     "typescript": "^4.9.3",
     "vite": "^4.2.0",
