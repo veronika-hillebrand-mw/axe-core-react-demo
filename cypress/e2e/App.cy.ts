@@ -6,6 +6,10 @@ describe('App specification', () => {
     cy.injectAxe()
   })
 
+  afterEach(() => {
+    cy.htmlvalidate();
+  });
+
   it('loads', () => {
     cy.contains('Vite + React')
   })
