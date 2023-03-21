@@ -1,0 +1,38 @@
+image: cypress/base:18.14.1
+
+stages:
+  - install
+  - test
+
+# to cache both npm modules and Cypress binary we use environment variables
+# to point at the folders we can list as paths in "cache" job settings
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+
+# cache using branch name
+# https://gitlab.com/help/ci/caching/index.md
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm
+    - cache/Cypress
+    - node_modules
+
+install-job:
+  stage: install
+  script:
+    - npm install
+
+unit-test-job:
+  stage: test
+  script:
+    - echo "Running unit tests..."
+    - npm run test
+
+end-to-end-test-job:
+  stage: test
+  script:
+    - echo "Running end-to-end tests"
+    - npm run dev &
+    - npm run test:e2e
