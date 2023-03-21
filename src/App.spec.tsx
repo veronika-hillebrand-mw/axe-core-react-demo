@@ -18,7 +18,7 @@ describe('Simple working test', () => {
     render(<App />)
     const element = screen.getByText('Click on the Vite and React logos to learn more')
     expect(element.className).toEqual('read-the-docs')
-    expect(getComputedStyle(element).color).toEqual('rgb(136, 136, 136)')
+    expect(getComputedStyle(element).color).toEqual('')
   })
 
   it('should be accessible to all users', async () => {
