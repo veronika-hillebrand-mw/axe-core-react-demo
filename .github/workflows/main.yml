@@ -1,0 +1,19 @@
+name: Cypress Tests and Unit tests
+on: push
+
+jobs:
+  end-to-end-test-job:
+    runs-on: ubuntu-22.04
+    container:
+      image: cypress/base:18.14.1
+      options: --user 1001
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run dev
+          browser: chrome
+
+
