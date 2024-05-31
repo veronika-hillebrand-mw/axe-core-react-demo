@@ -3,10 +3,7 @@ on: push
 
 jobs:
   end-to-end-test-job:
-    runs-on: ubuntu-22.04
-    container:
-      image: cypress/base:18.14.1
-      options: --user 1001
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -15,5 +12,10 @@ jobs:
         with:
           start: npm run dev
           browser: chrome
-
-
+  unittest-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - run: npm ci
+      - run: npm run test
